@@ -53,7 +53,7 @@ const Scene: React.FC<SceneProps> = ({ config, handFactor }) => {
     const hFactor = handFactor.current;
     
     // Lerp Speed (Morphing smoothness)
-    const speed = 4.0 * delta; 
+    const speed = config.morphSpeed * delta; 
     
     // Time for idle animation
     const time = state.clock.getElapsedTime();
@@ -80,8 +80,8 @@ const Scene: React.FC<SceneProps> = ({ config, handFactor }) => {
       const noise = Math.sin(time * 0.5 + i * 0.1) * 0.05;
       
       // Calculate expansion multiplier
-      // Base scale is 1. When hand is open (1), scale up to 2.5
-      const expansion = 1 + (hFactor * 2.5);
+      // Base scale is 1. When hand is open (1), scale up to config.morphIntensity
+      const expansion = 1 + (hFactor * config.morphIntensity);
       
       // Explosion effect for fireworks
       let animX = tx;

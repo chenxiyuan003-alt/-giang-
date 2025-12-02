@@ -1,6 +1,6 @@
 import React from 'react';
 import { ParticleConfig, ShapeType } from '../types';
-import { Palette, Maximize, Minimize, Hand } from 'lucide-react';
+import { Palette, Maximize, Minimize, Hand, Sliders } from 'lucide-react';
 
 interface ControlsProps {
   config: ParticleConfig;
@@ -77,6 +77,42 @@ const Controls: React.FC<ControlsProps> = ({ config, setConfig, isTracking }) =>
               </button>
             ))}
           </div>
+        </div>
+
+        {/* Dynamics Controls */}
+        <div className="bg-black/60 backdrop-blur-xl border border-white/10 p-4 rounded-2xl">
+           <div className="flex items-center gap-2 mb-3 text-xs text-gray-400 uppercase font-semibold">
+              <Sliders size={14} />
+              <span>Dynamics</span>
+           </div>
+           
+           <div className="space-y-4">
+              <div>
+                <div className="flex justify-between text-[10px] text-gray-400 mb-1">
+                   <span>MORPH SPEED</span>
+                   <span>{config.morphSpeed.toFixed(1)}</span>
+                </div>
+                <input 
+                    type="range" min="0.5" max="10.0" step="0.5"
+                    value={config.morphSpeed}
+                    onChange={(e) => setConfig({...config, morphSpeed: parseFloat(e.target.value)})}
+                    className="w-full h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-white"
+                />
+              </div>
+
+              <div>
+                <div className="flex justify-between text-[10px] text-gray-400 mb-1">
+                   <span>INTERACTION INTENSITY</span>
+                   <span>{config.morphIntensity.toFixed(1)}</span>
+                </div>
+                <input 
+                    type="range" min="0.5" max="8.0" step="0.5"
+                    value={config.morphIntensity}
+                    onChange={(e) => setConfig({...config, morphIntensity: parseFloat(e.target.value)})}
+                    className="w-full h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-white"
+                />
+              </div>
+           </div>
         </div>
 
         {/* Color & Size */}

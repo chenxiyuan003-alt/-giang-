@@ -12,6 +12,8 @@ const App: React.FC = () => {
     color: '#00ccff',
     shape: ShapeType.HEART,
     particleSize: 0.035,
+    morphSpeed: 4.0,
+    morphIntensity: 2.5,
   });
 
   const [isTracking, setIsTracking] = useState(false);
